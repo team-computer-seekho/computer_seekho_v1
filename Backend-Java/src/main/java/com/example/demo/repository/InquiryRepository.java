@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.Optional;
 
@@ -22,3 +23,13 @@ public interface InquiryRepository extends JpaRepository<Inquiry, Integer> {
     
 
 }
+=======
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.entity.Inquiry;
+
+@Repository
+public interface InquiryRepository extends JpaRepository<Inquiry, Integer> {
+}
+>>>>>>> 56720623240455d56432955049f4fc0807eebb83
