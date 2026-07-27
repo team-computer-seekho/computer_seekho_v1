@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.controller.StaffRepository;
 import com.example.demo.entity.Staff;
-import com.example.service.intrf.StaffRepo;
+import com.example.demo.service.intrf.StaffRepo;
 
 @Service
 public class StaffImp implements StaffRepo{
