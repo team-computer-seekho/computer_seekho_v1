@@ -1,4 +1,4 @@
-package com.example.service.intrf;
+package com.example.demo.service.intrf;
 
 import java.util.List;
 import java.util.Optional;

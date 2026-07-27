@@ -10,7 +10,7 @@ import com.example.demo.controller.StaffRepository;
 import com.example.demo.entity.Inquiry;
 import com.example.demo.entity.Staff;
 import com.example.demo.repository.InquiryRepository;
-import com.example.service.intrf.InquiryRepo;
+import com.example.demo.service.intrf.InquiryRepo;
 
 @Service
 public class InquiryImp implements InquiryRepo {

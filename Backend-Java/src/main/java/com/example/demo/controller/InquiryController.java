@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.entity.Inquiry;
-import com.example.service.intrf.InquiryRepo;
+import com.example.demo.service.intrf.InquiryRepo;
 
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
