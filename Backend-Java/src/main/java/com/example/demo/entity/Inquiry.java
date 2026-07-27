@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import java.time.LocalDate;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "inquiries")
@@ -21,6 +22,14 @@ public class Inquiry {
     @JoinColumn(name = "staff_id")
     private Staff staff;
 
+    @OneToMany(mappedBy = "inquiry", fetch = FetchType.LAZY)
+    private List<Student> students;
+    
+    @OneToMany(mappedBy = "inquiry", fetch = FetchType.LAZY)
+    private List<FollowUp> followUps;
+    
+    @OneToOne(mappedBy = "inquiry", fetch = FetchType.LAZY)
+    private Student student;
     @Column(name = "enquirer_name", nullable = false)
     private String enquirerName;
 
