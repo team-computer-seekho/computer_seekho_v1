@@ -24,6 +24,8 @@ public class Staff {
     @Column(name = "staff_id")
     private Integer staffId;
 
+    
+    
     @Column(nullable = false, length = 150)
     private String name;
 
