@@ -6,20 +6,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.StaffRepository;
 import com.example.demo.entity.Inquiry;
 import com.example.demo.entity.Staff;
 import com.example.demo.repository.InquiryRepository;
+import com.example.demo.repository.StaffRepository;
 import com.example.demo.service.intrf.InquiryRepo;
 
 @Service
 public class InquiryImp implements InquiryRepo {
 
     @Autowired
-    InquiryRepository repository;
+    private InquiryRepository repository;
 
     @Autowired
-    StaffRepository staffRepository;
+    private StaffRepository staffRepository;
 
     @Override
     public List<Inquiry> getInquiry() {
@@ -50,7 +50,7 @@ public class InquiryImp implements InquiryRepo {
 
     @Override
     public List<Inquiry> getNewInquiry() {
-        return repository.findByStatusAndStaffIsNull("New");
+        return repository.findByStatusAndStaffIsNull(Inquiry.InquiryStatus.New);
     }
 
     @Override
@@ -61,12 +61,14 @@ public class InquiryImp implements InquiryRepo {
     @Override
     public Inquiry assignInquiry(Integer inquiryId, Integer staffId) {
 
-        Inquiry inquiry = repository.findById(inquiryId).orElseThrow();
+        Inquiry inquiry = repository.findById(inquiryId)
+                .orElseThrow(() -> new RuntimeException("Inquiry not found"));
 
-        Staff staff = staffRepository.findById(staffId).orElseThrow();
+        Staff staff = staffRepository.findById(staffId)
+                .orElseThrow(() -> new RuntimeException("Staff not found"));
 
         inquiry.setStaff(staff);
-        inquiry.setStatus("In-Followup");
+        inquiry.setStatus(Inquiry.InquiryStatus.In_Followup);
 
         return repository.save(inquiry);
     }

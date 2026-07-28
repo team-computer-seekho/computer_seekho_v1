@@ -1,24 +1,30 @@
 package com.example.demo.entity;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "inquiries")
+@Getter
+@Setter
 public class Inquiry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inquiry_id")
     private Integer inquiryId;
+    
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
+    
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "staff_id")
     private Staff staff;
 
@@ -30,107 +36,39 @@ public class Inquiry {
     
     @OneToOne(mappedBy = "inquiry", fetch = FetchType.LAZY)
     private Student student;
-    @Column(name = "enquirer_name", nullable = false)
+    
+    @Column(name = "enquirer_name", nullable = false, length = 150)
     private String enquirerName;
+    
 
-    @Column(name = "email")
+    @Column(name = "email", length = 150)
     private String email;
+    
 
-    @Column(name = "phone")
+    @Column(name = "phone", length = 15)
     private String phone;
+    
 
-    @Column(name = "message")
+    @Column(name = "message", columnDefinition = "TEXT")
     private String message;
+    
 
-    @Column(name = "source")
+    @Column(name = "source", length = 100)
     private String source;
+    
 
-    @Column(name = "status")
-    private String status = "New";
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private InquiryStatus status = InquiryStatus.New;
 
-    @Column(name = "inquiry_date")
+    @Column(name = "inquiry_date", nullable = false)
     private LocalDate inquiryDate = LocalDate.now();
 
-    // ================= Getter & Setter =================
-
-    public Integer getInquiryId() {
-        return inquiryId;
+    public enum InquiryStatus {
+        New,
+        In_Followup,
+        Converted,
+        Lost,
+        Not_Interested
     }
-
-    public void setInquiryId(Integer inquiryId) {
-        this.inquiryId = inquiryId;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public Staff getStaff() {
-        return staff;
-    }
-
-    public void setStaff(Staff staff) {
-        this.staff = staff;
-    }
-
-    public String getEnquirerName() {
-        return enquirerName;
-    }
-
-    public void setEnquirerName(String enquirerName) {
-        this.enquirerName = enquirerName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDate getInquiryDate() {
-        return inquiryDate;
-    }
-
-    public void setInquiryDate(LocalDate inquiryDate) {
-        this.inquiryDate = inquiryDate;
-    }
-   
 }

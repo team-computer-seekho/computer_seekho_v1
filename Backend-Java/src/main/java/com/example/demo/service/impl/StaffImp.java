@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.controller.StaffRepository;
 import com.example.demo.entity.Staff;
+import com.example.demo.repository.StaffRepository;
 import com.example.demo.service.intrf.StaffRepo;
 
 @Service
