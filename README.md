@@ -1,1 +1,0 @@
-# computer_seekho_v1
